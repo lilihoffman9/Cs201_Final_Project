@@ -48,6 +48,8 @@ public class Server extends Thread{
     public Event getEventByDate(String date){
         
     }
+	public String getUser(String k){
+	}
 
 	public void sendMessage(String message) {
 		pw.println(message);
