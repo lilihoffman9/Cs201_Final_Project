@@ -1,0 +1,11 @@
+Week of 4/15
+- Lakshya finish EventParser by Monday 4/15
+- Be able to register/submit users by Saturday 4/20
+- Be able to message users by Saturday 4/20
+- Be able to search for an event and see the matching event by Saturday 4/20
+- Creating a servlet for every page by Saturday 4/20
+- Be ready for testing
+
+Week of 4/22
+- Start testing
+- Make sure front end pages all lead to somewhere
