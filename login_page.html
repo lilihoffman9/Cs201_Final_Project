@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">   
+
+    <title>Login Page</title>
+</head>
+<body>
+    <!-- navigation bar -->
+    <div id="navbar">
+        <div id="nav">
+            <ul>
+                <li class="right-items">
+                    <ul>
+                        <li><a href="#login-container">Sign Up |</a></li>
+				        <li><a href="#login-container">Log in</a></li>
+                    </ul>
+                </li>
+			</ul>
+        </div> <!-- #nav -->
+    </div> <!-- #navbar -->
+
+    <!-- form -->
+    <div class="login-container">
+        <p>Login</p>
+        <form class="login-form">
+            <div id="input-container">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+            </div>
+            <button type="submit">Log In</button>
+        </form>
+        <div id="signup">
+            Not a member? <a href="#">Sign up here</a>
+        </div>
+    </div>
+</body>
+</html>
