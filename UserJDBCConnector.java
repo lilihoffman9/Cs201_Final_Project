@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/************This class is for validating the User from the database ************/
+
 public class UserJDBCConnector {
     private Connection connection;
 
