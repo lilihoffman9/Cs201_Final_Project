@@ -5,12 +5,12 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-@WebServlet("/LogInServlet")
-public class LogInServlet extends HttpServlet{
-	private static final long serialVersionUID = 1L;
+@WebServlet("/search_pageServerlet")
+public class search_pageServerlet {
+private static final long serialVersionUID = 1L;
 	
 	// Constructor
-	public LogInServlet() {
+	public search_pageServerlet() {
 		super();
 	}
 	
@@ -19,13 +19,11 @@ public class LogInServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter pw = response.getWriter();
-		String username = request.getParameter("username");
-	    String password = request.getParameter("password");
-		
-		User currUser = new User(username, password);
+		String searchBox = request.getParameter("search-box");
 		
 		// TODO: Change to the type of response that the front end can use.
-		pw.print(currUser.authenticate(username, password));
+		pw.print(searchBox);
+		pw.close();
 	}
 
 	/**
