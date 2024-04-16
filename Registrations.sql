@@ -1,4 +1,4 @@
-CREATE TABLE Registration (
+CREATE TABLE Registrations (
     registrationID INT AUTO_INCREMENT PRIMARY KEY,
     userID INT NOT NULL,
     eventID INT NOT NULL,
