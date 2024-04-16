@@ -4,7 +4,4 @@ CREATE TABLE Users (
     password VARCHAR(255) NOT NULL,
     firstName VARCHAR(255) NOT NULL,
     lastName VARCHAR(255) NOT NULL,
-    registeredEvents VARCHAR(255)
 );
-
-SELECT * FROM registeredusers.users;
