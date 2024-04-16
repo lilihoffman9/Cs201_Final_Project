@@ -1,7 +1,8 @@
-CREATE TABLE `Events` {
-  `eventDate` VARCHAR(45) NULL,
-  `location` VARCHAR(45) NULL,
-  `description` VARCHAR(45) NULL,
-  `eventName` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`eventName`));
-}
+CREATE TABLE Events (
+    eventID INT AUTO_INCREMENT PRIMARY KEY,
+    eventName VARCHAR(255) NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    date DATETIME NOT NULL,
+    description TEXT
+    QRCodePath VARCHAR(255) UNIQUE NOT NULL  -- Storing the file path
+);
