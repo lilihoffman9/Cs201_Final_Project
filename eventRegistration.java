@@ -1,8 +1,11 @@
 /*
-This class is to: 
-1. Insert an Event Registration into the SQL database ]
-2. Allow users to retrieve their registration information
+ * This class is to: 
+ * 1. Create Event Registration
+ * 2. Allow users to retrieve their registration information
+ * 3. As long as the user registers for the event, insert reg info to Registrations table
+ * 4. Allow users to register for an event
 */
+
 
 package ningyues_CSCI201_Final_Project;
 
@@ -30,6 +33,7 @@ public class EventRegistration {
         this.regID = auth.getRegistrationID(userID, eventID);
         this.registrationList = auth.getUserRegistrations(userID);
         this.regTime = auth.getRegistrationTime(userID, eventID);
+        auth.insertRegistration(userID, eventID);
     }
 //
 //    private String generateQR(String data) throws WriterException, IOException {
