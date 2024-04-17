@@ -1,8 +1,8 @@
-//*****This class is to insert the Event into the SQL database ***********/
+
 /*
-This class is to: 
-1. insert the Event into the SQL database
-3. Allow to fetch event id
+ * This class is to: 
+ * 1. insert the Event into the SQL database
+ * 2. TODO: fetch event info to support Event Class
 */
 
 
@@ -12,6 +12,7 @@ package ningyues_CSCI201_Final_Project;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class EventJDBCConnector {
@@ -67,6 +68,21 @@ public class EventJDBCConnector {
             e.printStackTrace();
         }
     }
+    
+    public int getEventID(String eventName) {
+        String sql = "SELECT eventID FROM Events WHERE eventName = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, eventName);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("eventID");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
     
     public static void main(String[] args) {
         EventJDBCConnector auth = new EventJDBCConnector();
