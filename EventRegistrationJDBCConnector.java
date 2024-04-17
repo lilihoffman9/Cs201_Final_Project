@@ -1,7 +1,7 @@
 /*
 This class is to: 
 1. Insert an Event Registration into the SQL database ]
-2. Allow users to register for an event
+2. Fetch Registration info to support EventRegisration Class
 3. Interactions with Registrations table
 */
 
@@ -117,7 +117,7 @@ public class EventRegistrationJDBCConnector {
     }
 
     public int getRegistrationID(int userId, int eventId) {
-        String sql = "SELECT registration FROM Registrations WHERE userID = ? AND eventID = ?";
+        String sql = "SELECT registrationID FROM Registrations WHERE userID = ? AND eventID = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, userId);
             stmt.setInt(2, eventId);
