@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="shared.css">   
+
+    <title>Sign Up</title>
+</head>
+<style>
+    #password-requirement {
+        font-size: 10px;
+        font-weight: lighter;
+        text-align: left;
+        color:gray;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+</style>
+<body>
+    <!-- navigation bar -->
+    <div id="navbar">
+        <div id="nav">
+            <ul>
+                <li class="right-items">
+                    <ul>
+				        <li><a href="login_page.html">Log In</a></li>
+                    </ul>
+                </li>
+			</ul>
+        </div> <!-- #nav -->
+    </div> <!-- #navbar -->
+
+    <!-- form -->
+    <div class="login-container">
+        <p>Sign Up</p>
+        <form class="login-form" action="LogInServlet" method="POST">
+            <div id="input-container">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="first-name">First name</label>
+                    <input type="text" id="first-name" name="first-name" required>
+                </div>
+                <div class="input-group">
+                    <label for="last-name">Last name</label>
+                    <input type="text" id="last-name" name="last-name" required>
+                </div>
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <p id="password-requirement">Include at least one of each: uppercase character, lowercase character, digit, special character (!, @, #, $, %, ^, &, *).</p>
+                </div>
+                <div class="input-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="password-confirmation" name="password-confirmation" required>
+                </div>
+
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <div id="signup">
+            Already a member? <a href="login_page.html">Log in here</a>
+        </div>
+    </div>
+</body>
+</html>
