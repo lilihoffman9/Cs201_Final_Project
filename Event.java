@@ -1,3 +1,7 @@
+/*
+ * This class is to:
+ * 1. Create Event and insert its info to Events table
+ */
 package ningyues_CSCI201_Final_Project;
 
 import java.io.IOException;
@@ -19,11 +23,14 @@ public class Event {
     private String QRCodePath;
     
     Event(String name, String location, String date, String details) throws WriterException, IOException{
+    	EventJDBCConnector auth = new EventJDBCConnector();
+    	this.id = auth.getEventID(name);
     	this.name = name;
     	this.location = location;
     	this.date = date;
     	this.details = details;
     	this.QRCodePath = generateQR(String.valueOf(id));
+    	auth.insertEventToSQL(name, location,date, details, QRCodePath);
     }
     
     private String generateQR(String eventID) throws WriterException, IOException {
