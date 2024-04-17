@@ -1,47 +1,78 @@
-import java.time.LocalDateTime; 
-import java.util.UUID; // For generating unique registration IDs and QR codes
+/*
+This class is to: 
+1. Insert an Event Registration into the SQL database ]
+2. Allow users to retrieve their registration information
+*/
+
+package ningyues_CSCI201_Final_Project;
+
+import java.time.LocalDateTime;
+import java.util.List;
+//import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+//import java.nio.file.FileSystems;
+//import java.nio.file.Path;
 
 public class EventRegistration {
-    private String userID;
-    private String eventName;
+    private int userID;
+    private int eventID;
     private LocalDateTime regTime;
-    private String regID;
-    private String QRCode;
+//    private String QRCodePath;
+    private int regID;
+    private List<String> registrationList;
+    
 
-    public EventRegistration(String userID, String eventName) {
+    public EventRegistration(int userID,int eventID) throws IOException {
         this.userID = userID;
-        this.eventName = eventName;
-        this.regTime = LocalDateTime.now(); 
-        this.regID = UUID.randomUUID().toString(); 
-        this.QRCode = generateQR(); 
+        this.eventID= eventID; 
+        //this.QRCodePath = generateQR(this.regID);
+        EventRegistrationJDBCConnector auth = new EventRegistrationJDBCConnector();
+        this.regID = auth.getRegistrationID(userID, eventID);
+        this.registrationList = auth.getUserRegistrations(userID);
+        this.regTime = auth.getRegistrationTime(userID, eventID);
     }
+//
+//    private String generateQR(String data) throws WriterException, IOException {
+//        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+//        BitMatrix bitMatrix = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, 350, 350);
+//
+//        String filePath = "QRCode_" + this.regID + ".png";
+//        Path path = FileSystems.getDefault().getPath(filePath);
+//        MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
+//
+//        return filePath; 
+//    }
 
-    private String generateQR() {
-        // Just to simulate QR code with unique UUID for now
-        return UUID.randomUUID().toString(); 
-    }
-
-    public String getUserID() {
+//    public String getQRCodePath() {
+//        return QRCodePath;
+//    }
+//    
+    public int getUserID() {
         return userID;
     }
 
-    public String getEventName() {
-        return eventName;
+    public int getEventID() {
+        return eventID;
     }
-
+    
     public LocalDateTime getRegTime() {
         return regTime;
     }
 
-    public String getRegID() {
+    public int getRegID() {
         return regID;
     }
-
-    public String getQRCode() {
-        return QRCode;
+    
+    public List<String> getUserRegistrations() {
+    	return registrationList;
     }
-
-    public void addRegistration(String eventName) {
-        // Each user can register an event via this method
-    }
+    
+//    public static void main(String[] args) {
+//        try {
+//            EventRegistration registration = new EventRegistration("User123", "SampleEvent");
+//            System.out.println("QR Code generated at: " + registration.getQRCodePath());
+//        } catch (WriterException | IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
