@@ -26,7 +26,7 @@ public class EventParser {
     // Generic search method
     private List<Event> searchEvents(String fieldName, String value) {
         List<Event> events = new ArrayList<>();
-        String query = "SELECT eventName, eventDate, location, description FROM Events WHERE " + fieldName + " = ?";
+        String query = "SELECT eventName, location, DATETIME, description FROM Events WHERE " + fieldName + " = ?";
 
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -37,7 +37,7 @@ public class EventParser {
             while (rs.next()) {
                 events.add(new Event(
                     rs.getString("eventName"),
-                    rs.getString("eventDate"),
+                    rs.getString("DATETIME"),
                     rs.getString("location"),
                     rs.getString("description")
                 ));
