@@ -10,7 +10,7 @@ public class EventParser {
     
     // Search events by date
     public List<Event> searchEventsByDate(String date) {
-        return searchEvents("eventDate", date);
+        return searchEvents("DATETIME", date);
     }
 
     // Search events by location
