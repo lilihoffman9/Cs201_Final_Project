@@ -6,7 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 @WebServlet("/search_pageServerlet")
-public class search_pageServerlet {
+public class search_pageServerlet extends HttpServlet{
 private static final long serialVersionUID = 1L;
 	
 	// Constructor
