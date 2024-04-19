@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="shared.css">
-    <title>Search For An Event</title>
+    <title>Event Information</title>
 </head>
 <style>
     #inner-box {
@@ -14,13 +14,14 @@
         background-color: #D9D9D9;
         border-radius: 5px;
         z-index: 0;
-        margin-top: 30px;
+        margin-top: 80px;
         margin-left: 250px;
         margin-right: 50px;
         bottom: 30px;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        position: relative;
+        text-align: left;
     }
 
     #search-area {
@@ -44,7 +45,6 @@
         background-color: #C8C7C7;
         border: none;
         margin-right: 10px;
-        font-size:large;
 
     }
 
@@ -56,24 +56,68 @@
         border-radius: 5px;
         cursor: pointer;
         width: 150px;
-        font-size:large;
     }
 
     #action-button {
         width: 50px;
         margin-top: 20px;
-        font-size: 20px;
+        font-size: 16px;
     }
 
     #search-by {
         display: flex;
         align-items: center;
         font-family: Arial;
-        font-size:large;
     }
 
     #search-by-text {
+        color: #4D4646;
+    }
+
+    #event-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        object-position: top;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    #event-title {
+        margin-top: 300px;
         color:#4D4646;
+        font-weight: bold;
+        text-align: left;
+        margin-left: 50px;
+    }
+    #event-organizer {
+        color:#4D4646;
+        font-size: large;
+        text-align: left;
+        margin-left: 50px;
+    }
+    #event-details {
+        color:#4D4646;
+        text-align: left;
+        margin-left: 50px;
+        font-size: large;
+
+    }
+    #event-details-subtitle {
+        color:#4D4646;
+        text-align: left;
+        margin-left: 50px;
+        font-size: large;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+    #register-button {
+        width: 180px;
+        margin-left: 50px;
+        margin-top: 30px;
+        font-size:large;
     }
 </style>
 
@@ -96,23 +140,20 @@
             <li><a href="#search_page.html">Search</a></li>
             <li><a href="#myEvents.html">My Events</a></li>
             <li><a href="#messages.html">Messages</a></li>
-
         </ul>
     </div> <!-- #vertical-navbar -->
 
     <div id="inner-box">
-        <div id="search-area">
-            <div id="search-box-container">
-                <input type="text" id="search-box" placeholder="Search Our Events">
-                <button id="action-button"><i class="fas fa-search"></i></button>
-            </div>
-            <div id="search-by">
-                <span id="search-by-text">Search by: </span>
-                <button id="search-button">Date</button>
-                <button id="search-button">Location</button>
-                <button id="search-button">Event Type</button>
-            </div>
-        </div>
+        <img id="event-image"
+            src="https://assets.teenvogue.com/photos/65d7cbe5302e6f465c89e9ad/16:9/w_2560%2Cc_limit/GettyImages-2014836466.jpg"
+            alt="Event Image">
+
+        <p id="event-title">Taylor Swift Concert</p>
+        <p id="event-organizer">Event Organizer: Live Nation | (123) - 456 - 7890 | livenation@gmail.com </p>
+        <p id="event-details-subtitle">Event Details: </p>
+        <p id="event-details">Taylor Swift will be performing at the KIA Stadium on April 25th, 2024 at 4pm. </p>
+
+        <button id="register-button">Register</button>
     </div>
 </body>
 
