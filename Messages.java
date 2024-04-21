@@ -21,7 +21,9 @@ public class Messages {
     //return whole collection of messages
     public void doPost(HttpServletRequest request,HttpServletResponse response){ 
         try{
-            PrintWriter pw=response.getWriter();
+        	
+        	//add message to sql table
+            PrintWriter pw = response.getWriter();
             response.setContentType("application/json");
     
             BufferedReader br = request.getReader();
@@ -48,10 +50,29 @@ public class Messages {
             preparedStatement.setString(3, message);
             preparedStatement.setString(4, timestamp);
             preparedStatement.executeUpdate();
+            
+            // Retrieve all messages from the table
+            PreparedStatement selectStatement = connection.prepareStatement("SELECT * FROM MessageTable");
+            ResultSet resultSet = selectStatement.executeQuery();
+
+            JSONArray messagesArray = new JSONArray();	//to put messages in
+
+            while (resultSet.next()) {
+                JSONObject messageObject = new JSONObject();
+                messageObject.put("senderID", resultSet.getInt("senderID"));
+                messageObject.put("receiverID", resultSet.getInt("receiverID"));
+                messageObject.put("messageContent", resultSet.getString("messageContent"));
+                messageObject.put("timestamp", resultSet.getString("timestamp"));
+
+                messagesArray.put(messageObject);
+            }
     
+            //send response with all the messages
             JSONObject responseJson = new JSONObject();
             responseJson.put("status", "success");
-            pw.print(responseJson.toJSONString());
+            pw.print(responseJson.toString());
+            
+            
         } catch (Exception exception) {
             exception.printStackTrace();
         }
