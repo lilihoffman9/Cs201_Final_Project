@@ -199,3 +199,59 @@ button#send {
 .children {
 	display: inline-block;
 }
+
+#search-area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: absolute; 
+    bottom: 30px; 
+    width: 100%; 
+}
+
+#search-box-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#search-box {
+    margin-top: 20px;
+    width: 700px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    border: none;
+    margin-right: 10px;
+    font-size:large;
+}
+
+#action-button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 150px;
+    font-size:large;
+}
+
+#action-button {
+    width: auto;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+#search-by {
+    display: flex;
+    align-items: center;
+    font-family: Arial;
+    font-size:large;
+}
+
+#search-by-text {
+    color:#4D4646;
+}
