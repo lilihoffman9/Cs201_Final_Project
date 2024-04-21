@@ -1,6 +1,9 @@
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.zxing.WriterException;
 
 public class EventParser {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/events";
@@ -9,22 +12,22 @@ public class EventParser {
 
     
     // Search events by date
-    public List<Event> searchEventsByDate(String date) {
+    public List<Event> searchEventsByDate(String date) throws WriterException, IOException {
         return searchEvents("DATETIME", date);
     }
 
     // Search events by location
-    public List<Event> searchEventsByLocation(String location) {
+    public List<Event> searchEventsByLocation(String location) throws WriterException, IOException {
         return searchEvents("location", location);
     }
 
     // Search events by name
-    public List<Event> searchEventsByName(String eventName) {
+    public List<Event> searchEventsByName(String eventName) throws WriterException, IOException {
         return searchEvents("eventName", eventName);
     }
 
     // Generic search method
-    private List<Event> searchEvents(String fieldName, String value) {
+    private List<Event> searchEvents(String fieldName, String value) throws WriterException, IOException {
         List<Event> events = new ArrayList<>();
         String query = "SELECT eventName, location, DATETIME, description FROM Events WHERE " + fieldName + " = ?";
 
