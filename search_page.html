@@ -50,7 +50,7 @@
 
     }
 
-    #search-button,
+    .search-button,
     #action-button {
         padding: 10px 20px;
         margin: 0 10px;
@@ -99,14 +99,12 @@
         color: #666;
         text-align: left;
         margin: 10px;
-
     }
 
     .event img {
         width: 100px;
         height: 100px;
         margin: 10px;
-
     }
 </style>
 
@@ -141,25 +139,52 @@
             </div>
             <div id="search-by">
                 <span id="search-by-text">Search by: </span>
-                <button id="search-button">Date</button>
-                <button id="search-button">Location</button>
-                <button id="search-button">Event Type</button>
+                <button id="search-by-eventname" class="search-button">Event Name</button>
+                <button id="search-by-date" class="search-button">Date</button>
+                <button id="search-by-location" class="search-button">Location</button>
             </div>
         </div>
 
 
     </div>
 
-
     <script>
+        let selectedSearchOption = null; 
+    
+        function resetSearchButtons() {
+            document.querySelectorAll('.search-button').forEach(button => {
+                button.style.backgroundColor = ''; 
+            });
+        }
+    
+        function handleSearchButtonClick(event) {
+            const buttonId = event.target.id;
+            if (selectedSearchOption === buttonId) {
+                selectedSearchOption = null; 
+                event.target.style.backgroundColor = ''; 
+            } else {
+                resetSearchButtons(); 
+                selectedSearchOption = buttonId; 
+                event.target.style.backgroundColor = 'red'; 
+            }
+        }
+    
+        document.querySelectorAll('.search-button').forEach(button => {
+            button.addEventListener('click', handleSearchButtonClick);
+        });
+    
         document.getElementById('action-button').addEventListener('click', function () {
+            if (!selectedSearchOption) {
+                alert('Please select a search option.'); // Error message if no option is selected
+                return;
+            }
+    
             const existingResults = document.getElementById('search-results');
             if (existingResults) {
-                existingResults.remove();
+                existingResults.remove(); 
             }
-
+    
             const searchText = document.getElementById('search-box').value.toLowerCase();
-
             const events = [
                 { eventName: 'Summer Music Festival', location: 'New York City, NY', date: '2024-06-21 14:00:00', description: 'Join us for a day filled with music from top artists and local bands.', QRCodePath: 'https://qrcg-free-editor.qr-code-generator.com/main/assets/images/websiteQRCode_noFrame.png' },
                 { eventName: 'Tech Conference 2024', location: 'San Francisco, CA', date: '2024-09-15 09:00:00', description: 'A comprehensive conference featuring industry leaders in technology and innovation.', QRCodePath: 'https://qrcg-free-editor.qr-code-generator.com/main/assets/images/websiteQRCode_noFrame.png' },
@@ -167,20 +192,27 @@
                 { eventName: 'Food Expo 2024', location: 'Chicago, IL', date: '2024-08-12 10:00:00', description: 'Explore culinary delights from famous chefs and local favorites.', QRCodePath: 'https://qrcg-free-editor.qr-code-generator.com/main/assets/images/websiteQRCode_noFrame.png' },
                 { eventName: 'Art & Sculpture Exhibition', location: 'Los Angeles, CA', date: '2024-11-05 11:00:00', description: 'Experience breathtaking contemporary art and sculptures by renowned artists.', QRCodePath: 'https://qrcg-free-editor.qr-code-generator.com/main/assets/images/websiteQRCode_noFrame.png' }
             ];
-
-            const filteredEvents = events.filter(event => event.eventName.toLowerCase().includes(searchText));
-
+    
+            let filteredEvents = [];
+            if (selectedSearchOption === 'search-by-date') {
+                filteredEvents = events.filter(event => event.date.includes(searchText));
+            } else if (selectedSearchOption === 'search-by-location') {
+                filteredEvents = events.filter(event => event.location.toLowerCase().includes(searchText));
+            } else if (selectedSearchOption === 'search-by-eventname') {
+                filteredEvents = events.filter(event => event.eventName.toLowerCase().includes(searchText));
+            }
+    
             const resultsDiv = document.createElement('div');
             resultsDiv.id = 'search-results';
             document.getElementById('inner-box').appendChild(resultsDiv);
-
+    
             filteredEvents.forEach(event => {
                 const eventDiv = document.createElement('div');
                 eventDiv.classList.add('event');
-                eventDiv.innerHTML = `<h3>${event.eventName}</h3><p>${event.location} | ${event.date}</p><p>${event.description}</p><img src="${event.QRCodePath}" alt="QR Code" style="width:100px;height:100px;">`;
+                eventDiv.innerHTML = `<h3>${event.eventName}</h3><p>${event.location} | ${event.date}</p><p>${event.description}</p><img src="${event.QRCodePath}" alt="QR Code">`;
                 resultsDiv.appendChild(eventDiv);
             });
-
+    
             if (filteredEvents.length === 0) {
                 resultsDiv.innerHTML = `<p>No events found matching your search.</p>`;
             }
