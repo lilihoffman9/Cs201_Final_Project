@@ -21,6 +21,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        min-height: 500px;
+        overflow: auto;
     }
 
     #search-area {
@@ -44,7 +46,7 @@
         background-color: #C8C7C7;
         border: none;
         margin-right: 10px;
-        font-size:large;
+        font-size: large;
 
     }
 
@@ -56,7 +58,7 @@
         border-radius: 5px;
         cursor: pointer;
         width: 150px;
-        font-size:large;
+        font-size: large;
     }
 
     #action-button {
@@ -69,11 +71,42 @@
         display: flex;
         align-items: center;
         font-family: Arial;
-        font-size:large;
+        font-size: large;
+        margin-bottom: 10px;
     }
 
     #search-by-text {
-        color:#4D4646;
+        color: #4D4646;
+    }
+
+    .event {
+        background-color: #f0f0f0;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        margin-top: 10ox;
+    }
+
+    .event h3 {
+        font-size: 18px;
+        color: #333;
+        text-align: left;
+        margin: 10px;
+    }
+
+    .event p {
+        font-size: 14px;
+        color: #666;
+        text-align: left;
+        margin: 10px;
+
+    }
+
+    .event img {
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+
     }
 </style>
 
@@ -113,7 +146,48 @@
                 <button id="search-button">Event Type</button>
             </div>
         </div>
+
+
     </div>
+
+
+    <script>
+        document.getElementById('action-button').addEventListener('click', function () {
+            const existingResults = document.getElementById('search-results');
+            if (existingResults) {
+                existingResults.remove();
+            }
+
+            const searchText = document.getElementById('search-box').value.toLowerCase();
+
+            const events = [
+                { eventName: 'Summer Music Festival', location: 'New York City, NY', date: '2024-06-21 14:00:00', description: 'Join us for a day filled with music from top artists and local bands.', QRCodePath: 'https://qrcg-free-editor.qr-code-generator.com/main/assets/images/websiteQRCode_noFrame.png' },
+                { eventName: 'Tech Conference 2024', location: 'San Francisco, CA', date: '2024-09-15 09:00:00', description: 'A comprehensive conference featuring industry leaders in technology and innovation.', QRCodePath: 'https://qrcg-free-editor.qr-code-generator.com/main/assets/images/websiteQRCode_noFrame.png' },
+                { eventName: 'Marathon 2024', location: 'Boston, MA', date: '2024-04-19 06:00:00', description: 'Annual marathon with participants from all over the world.', QRCodePath: 'https://qrcg-free-editor.qr-code-generator.com/main/assets/images/websiteQRCode_noFrame.png' },
+                { eventName: 'Food Expo 2024', location: 'Chicago, IL', date: '2024-08-12 10:00:00', description: 'Explore culinary delights from famous chefs and local favorites.', QRCodePath: 'https://qrcg-free-editor.qr-code-generator.com/main/assets/images/websiteQRCode_noFrame.png' },
+                { eventName: 'Art & Sculpture Exhibition', location: 'Los Angeles, CA', date: '2024-11-05 11:00:00', description: 'Experience breathtaking contemporary art and sculptures by renowned artists.', QRCodePath: 'https://qrcg-free-editor.qr-code-generator.com/main/assets/images/websiteQRCode_noFrame.png' }
+            ];
+
+            const filteredEvents = events.filter(event => event.eventName.toLowerCase().includes(searchText));
+
+            const resultsDiv = document.createElement('div');
+            resultsDiv.id = 'search-results';
+            document.getElementById('inner-box').appendChild(resultsDiv);
+
+            filteredEvents.forEach(event => {
+                const eventDiv = document.createElement('div');
+                eventDiv.classList.add('event');
+                eventDiv.innerHTML = `<h3>${event.eventName}</h3><p>${event.location} | ${event.date}</p><p>${event.description}</p><img src="${event.QRCodePath}" alt="QR Code" style="width:100px;height:100px;">`;
+                resultsDiv.appendChild(eventDiv);
+            });
+
+            if (filteredEvents.length === 0) {
+                resultsDiv.innerHTML = `<p>No events found matching your search.</p>`;
+            }
+        });
+    </script>
+
+
 </body>
 
 </html>
