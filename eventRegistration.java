@@ -16,7 +16,7 @@ import java.io.IOException;
 //import java.nio.file.FileSystems;
 //import java.nio.file.Path;
 
-public class EventRegistration {
+public class eventRegistration {
     private int userID;
     private int eventID;
     private LocalDateTime regTime;
@@ -25,7 +25,7 @@ public class EventRegistration {
     private List<String> registrationList;
     
 
-    public EventRegistration(int userID,int eventID) throws IOException {
+    public eventRegistration(int userID,int eventID) throws IOException {
         this.userID = userID;
         this.eventID= eventID; 
         //this.QRCodePath = generateQR(this.regID);
