@@ -34,22 +34,24 @@ public class Server extends Thread{
 
     //takes in name of an event we are searching for and returns the name of the associated event
     public Event getEvent(String name){
-
+    	return null;
     }
 
     //takes in location of an event we are searching by and returns the name of the associated event
     //How to account for multiple events???
     public Event getEventByLocation(String loc){
-        
+        return null;
     }
 
     //takes in date of an event we are searching by and returns the name of the associated event
     //How to account for multiple events???
     public Event getEventByDate(String date){
-        
+        return null;
     }
-	public String getUser(String k){
-	}
+	
+    public String getUser(String k){
+	return null;
+     }
 
 	public void sendMessage(String message) {
 		pw.println(message);
