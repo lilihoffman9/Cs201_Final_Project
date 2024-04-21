@@ -5,6 +5,7 @@ public class Messages {
     private String message;
     private long timeStamp;
 
+    //return whole collection of messages
     public void doPost(HttpServletRequest request,HttpServletResponse response){ 
         try{
             PrintWriter pw=response.getWriter();
