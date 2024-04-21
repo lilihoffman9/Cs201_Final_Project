@@ -3,3 +3,5 @@
                   But for addingEvents...still unsure. 
 
 04/15 Hailey Oh: 4 pages added: login_page.html, signup_page.html, search_page.html, event_info.html (+ shared.css). Design consistent across all pages. 
+
+04/21 Hailey Oh: Modified chatRoom page for design consistency (must download chatRoom.html, chatRoom.css, shared.css). 
