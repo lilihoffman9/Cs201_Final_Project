@@ -1,4 +1,4 @@
-package jlee7162_201_FinalProject;
+package ningyues_CSCI201_Final_Project;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,9 +18,9 @@ public class UserJDBCConnector {
             Class.forName("com.mysql.jdbc.Driver");
             
             // Connect to the MySQL database
-            String url = "jdbc:mysql://localhost:3306/registeredusers";
+            String url = "jdbc:mysql://localhost:3306/finalproject201";
             String username = "root";
-            String password = "root";
+            String password = "Nora_20030930";
             connection = DriverManager.getConnection(url, username, password);
             //connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/registered?user=root&password=root");
         } catch (ClassNotFoundException | SQLException e) {
@@ -61,14 +61,48 @@ public class UserJDBCConnector {
         }
     }
 
-    public static void main(String[] args) {
-        UserJDBCConnector auth = new UserJDBCConnector();
-        boolean isValidUser = auth.authenticate("janicelee", "cs201");
-        if (isValidUser) {
-            System.out.println("User authenticated successfully.");
-        } else {
-            System.out.println("Invalid username or password.");
+    // Method to authenticate a user and get this user's info
+ // Method to authenticate a user and get this user's info
+    public User getUser(String username, String password) {
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            // Prepare SQL query to check if the user exists
+            String sql = "SELECT username, password, firstName, lastName, email FROM users WHERE username = ? AND password = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, username);
+            statement.setString(2, password);
+            
+            // Execute the query
+            resultSet = statement.executeQuery();
+            
+            // If the query returns any rows, the user is valid
+            if (resultSet.next()) {
+                String retrievedUsername = resultSet.getString("username");
+                String retrievedPassword = resultSet.getString("password");
+                String firstName = resultSet.getString("firstName");
+                String lastName = resultSet.getString("lastName");
+                String email = resultSet.getString("email");
+                
+                // Create a new User object with the retrieved details
+                User curUser = new User(retrievedUsername, retrievedPassword, firstName, lastName, email);
+                return curUser;
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close all connections to avoid memory leaks
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
-        auth.closeConnection();
+        return null; 
     }
+
 }
