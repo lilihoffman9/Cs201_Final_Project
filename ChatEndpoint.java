@@ -11,6 +11,8 @@ import jakarta.websocket.server.ServerEndpoint;
 import javax.websocket.server.ServerEndpoint;
 import javax.websocket.OnOpen;
 import javax.websocket.OnMessage;
+import javax.websocket.CloseReason;
+import javax.websocket.EncodeException;
 import javax.websocket.OnClose;
 import javax.websocket.Session;
 import javax.websocket.OnError;
