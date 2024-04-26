@@ -1,5 +1,4 @@
 function login(){
-	console.log("Here");
 	var _username = document.getElementById("username").value;
 	var _password = document.getElementById("password").value;
 	
@@ -28,9 +27,13 @@ function login(){
 	  }
 	  else
 	  {
-	  	window.localStorage.setItem("user_info", data);
-	  	window.location.href = 'profilePage.html';
-	  	console.log("Received upon login: " + data);
+	  	localStorage.setItem("firstName", data.firstName);
+	  	localStorage.setItem("lastName", data.lastName);
+	  	localStorage.setItem("email", data.email);
+	  	localStorage.setItem("registeredEvents", "");
+	  	localStorage.setItem("userName", data.username);
+	  	location.href = 'profilePage.html';
+	  	alert(localStorage.getItem('userName'));
 	  	
 	  }
 	})
