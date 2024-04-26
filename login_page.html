@@ -23,7 +23,7 @@
     <!-- form -->
     <div class="login-container">
         <p>Log In</p>
-        <form class="login-form" action="LogInServlet" method="POST">
+        <div class="login-form">
             <div id="input-container">
                 <div class="input-group">
                     <label for="username">Username</label>
@@ -34,8 +34,8 @@
                     <input type="password" id="password" name="password" required>
                 </div>
             </div>
-            <button type="submit">Log In</button>
-        </form>
+            <button type="submit" onclick = "login();">Log In</button>
+        </div>
         <div id="signup">
             Not a member? <a href="signup_page.html">Sign up here</a>
         </div>
