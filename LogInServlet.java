@@ -21,10 +21,9 @@ public class LogInServlet extends HttpServlet{
 		response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter pw = response.getWriter();
-        Gson gson = new Gson();
-
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        User user = new Gson().fromJson(request.getReader(), User.class);
+		String username = user.username;
+		String password = user.password;
         
         if (username == null || password == null) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -32,12 +31,12 @@ public class LogInServlet extends HttpServlet{
         } 
         else {
         	UserJDBCConnector auth = new UserJDBCConnector();
-        	User curUser = auth.getUser(username, password);
 
-            if (curUser == null) {
+            if (auth.authenticate(username, password)) {
                 pw.write(gson.toJson("Invalid login credentials"));
             } 
             else { // successfully login
+            	User curUser = auth.getUser(username, password);
             	String userJson = gson.toJson(curUser);
     	        pw.write(userJson);
             }

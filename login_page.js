@@ -13,7 +13,7 @@ window.onload = function () {
 	})
 	.then(res => res.json())
 	.then((data) => {
-	  if(data == false)
+	  if(data == "Invalid login credentials")
 	  {
 	  	console.log("Error log!");
 	  }
@@ -21,6 +21,7 @@ window.onload = function () {
 	  {
 	  	window.localStorage.setItem("user_info", data);
 	  	window.location.href = 'profilePage.html';
+	  	console.log("Received upon login: " + data);
 	  }
 	})
 	.catch(error => {
