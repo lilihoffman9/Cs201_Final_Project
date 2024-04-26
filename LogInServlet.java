@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 @WebServlet("/LogInServlet")
 public class LogInServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
+	Gson gson;
 	
 	// Constructor
 	public LogInServlet() {
