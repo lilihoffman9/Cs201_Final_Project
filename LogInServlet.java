@@ -22,8 +22,8 @@ public class LogInServlet extends HttpServlet{
         response.setCharacterEncoding("UTF-8");
         PrintWriter pw = response.getWriter();
         User user = new Gson().fromJson(request.getReader(), User.class);
-		String username = user.username;
-		String password = user.password;
+		String username = user.getUsername();
+		String password = user.getPassword();
         
         if (username == null || password == null) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
