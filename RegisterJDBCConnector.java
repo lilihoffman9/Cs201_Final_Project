@@ -2,8 +2,8 @@
 
 //*****This class is to insert the User into the SQL database ***********/
 
+package ningyues_CSCI201_Final_Project;
 
-package jlee7162_201_FinalProject;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,9 +20,9 @@ public class RegisterJDBCConnector {
             // Load the MySQL JDBC driver
         	Class.forName("com.mysql.cj.jdbc.Driver");            
             // Connect to the MySQL database
-            String url = "jdbc:mysql://localhost:3306/registeredusers";
+            String url = "jdbc:mysql://localhost:3306/databaseName";
             String username = "root";
-            String password = "root";
+            String password = "password";
             connection = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -30,15 +30,16 @@ public class RegisterJDBCConnector {
     }
 
     // Method to insert a user to SQL databse
-    public void insertUserToSQL(String username, String password, String firstName, String lastName) {
+    public void insertUserToSQL(String username, String password, String firstName, String lastName, String email) {
         try {
             // Prepare SQL query to insert a new user
-            String sql = "INSERT INTO users (username, password, firstName, lastName) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO users (username, password, firstName, lastName, email) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, username);
             statement.setString(2, password);
             statement.setString(3, firstName);
             statement.setString(4, lastName);
+            statement.setString(5, email);
 
             // Execute the query
             int rowsInserted = statement.executeUpdate();
@@ -66,7 +67,7 @@ public class RegisterJDBCConnector {
 
     public static void main(String[] args) {
         RegisterJDBCConnector auth = new RegisterJDBCConnector();
-        auth.insertUserToSQL("cs201", "finalproject4", "Papa", "Macro");
+        auth.insertUserToSQL("cs201", "finalproject4", "Papa", "Macro", "Nora@usc.edu");
         auth.closeConnection();
     }
 }
