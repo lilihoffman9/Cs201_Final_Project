@@ -31,7 +31,7 @@ public class signup_pageServlet extends HttpServlet{
 		// TODO: Change to the type of response that the front end can use.
 		if(verifyProperSignUp(username, password, passwordConfirmation, firstName, lastName, email)) {
 			pw.print(true);
-			currUser.insertUser(username, password, firstName, lastName);
+			currUser.insertUser(username, password, firstName, lastName, email);
 		}
 		else {
 			pw.print(false);
