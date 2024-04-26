@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,9 +31,9 @@
     </div> <!-- #navbar -->
 
     <!-- form -->
-    <div class="login-container">
+    <div class="signup-container">
         <p>Sign Up</p>
-        <form class="login-form" action="LogInServlet" method="POST">
+        <form id="signupForm" class="signup-form" action="signup_pageServlet" method="POST" onsubmit="return addUser();">
             <div id="input-container">
                 <div class="input-group">
                     <label for="email">Email</label>
