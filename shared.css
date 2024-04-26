@@ -115,7 +115,7 @@ body {
     height: 100vh;
 }
 
-.login-container {
+.login-container, .signup-container {
     background-color: rgba(255, 255, 255, 0.2);
     padding: 40px;
     padding-top:30px;
@@ -132,7 +132,7 @@ p {
     font-size:30px;
 }
 
-.login-form {
+.login-form, .signupForm {
     display: flex;
     flex-direction: column;
 }
