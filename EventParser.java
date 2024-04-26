@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set; //imports set
 
 import com.google.zxing.WriterException;
 
@@ -12,23 +13,23 @@ public class EventParser {
 
     
     // Search events by date
-    public List<Event> searchEventsByDate(String date) throws WriterException, IOException {
+    public Set<Event> searchEventsByDate(String date) throws WriterException, IOException {
         return searchEvents("DATETIME", date);
     }
 
     // Search events by location
-    public List<Event> searchEventsByLocation(String location) throws WriterException, IOException {
+    public Set<Event> searchEventsByLocation(String location) throws WriterException, IOException {
         return searchEvents("location", location);
     }
 
     // Search events by name
-    public List<Event> searchEventsByName(String eventName) throws WriterException, IOException {
+    public Set<Event> searchEventsByName(String eventName) throws WriterException, IOException {
         return searchEvents("eventName", eventName);
     }
 
     // Generic search method
-    private List<Event> searchEvents(String fieldName, String value) throws WriterException, IOException {
-        List<Event> events = new ArrayList<>();
+    private Set<Event> searchEvents(String fieldName, String value) throws WriterException, IOException {
+        Set<Event> events = new HashSet<>();
         String query = "SELECT eventName, location, DATETIME, description FROM Events WHERE " + fieldName + " = ?";
 
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
