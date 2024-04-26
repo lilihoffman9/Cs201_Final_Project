@@ -1,4 +1,4 @@
-package jlee7162_201_FinalProject;
+package ningyues_CSCI201_Final_Project;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -67,8 +67,8 @@ public class User {
 	}
 	
 	//inserting user here calls the function in RegisterJDBConnector class
-	public void insertUser(String username, String password, String firstName, String lastName) {
-		register.insertUserToSQL(username, password, firstName, lastName);
+	public void insertUser(String username, String password, String firstName, String lastName, String email) {
+		register.insertUserToSQL(username, password, firstName, lastName, email);
 	}
 
 }
