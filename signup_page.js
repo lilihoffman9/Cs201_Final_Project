@@ -17,9 +17,10 @@ function validatePassword() {
 }
 
 function addUser() {
+	console.log("adding users....");
     if(!validatePassword())
     {
-		return;
+		return false;
 	}
 	
 	//get inputs from frontend
@@ -37,30 +38,28 @@ function addUser() {
 		username: _username,
 		password: _password,
 		confirmpassword: _confirmpassword
-		});
-		
-	fetch('Register', {
-		method: 'POST',
-		headers: {'Content-Type': 'application/json'},
-		body: result
+	});
+	
+	fetch('signup_pageServlet', {
+	    method: 'POST',
+	    headers: {'Content-Type': 'application/json'}, 
+	    body: result
 	})
-	.then(res => res.json())
-	.then((data) => {
-	  console.log(data);
-	  if(data == "Username is taken" || data == "Email is already registered")
-	  {
-		alert(data);
-	  }
-	  else
-	  {
-		alert("User added successfully! Log In with your new credentials");
-		window.location.href = 'login_page.html';
-		
-	  }
+	.then(response => response.json())
+	.then(data => {
+	    console.log(data);
+	    if (!response.ok) {  
+	        alert("Error: " + data);
+	    } 
+	    else if (response.redirected) {
+            window.location.href = response.url;
+		}  
 	})
 	.catch(error => {
-		alert("An error occurred while adding user. " + error);
+	    console.error("Error adding user: ", error);
+	    alert("An error occurred while adding user. " + error);
 	});
-    
+
+
     return false;
 }
