@@ -15,7 +15,7 @@ public class UserJDBCConnector {
     public UserJDBCConnector() {
         try {
             // Load the MySQL JDBC driver
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             
             // Connect to the MySQL database
             String url = "jdbc:mysql://localhost:3306/finalproject201";
@@ -30,15 +30,17 @@ public class UserJDBCConnector {
 
     // Method to authenticate a user
     public boolean authenticate(String username, String password) {
+    	PreparedStatement statement = null;
+    	ResultSet resultSet = null;
         try {
             // Prepare SQL query to check if the user exists
             String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(sql);
             statement.setString(1, username);
             statement.setString(2, password);
             
             // Execute the query
-            ResultSet resultSet = statement.executeQuery();
+            resultSet = statement.executeQuery();
             
             // If the query returns any rows, the user is valid
             if (resultSet.next()) {
@@ -46,6 +48,20 @@ public class UserJDBCConnector {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+        	try {
+        		if (statement != null) {
+        			statement.close();
+        		}
+        		if (resultSet!= null) {
+        			resultSet.close();
+        		}
+        		if (connection != null) {
+        			 connection.close();
+        		}
+        	} catch (SQLException sqle) {
+        		System.out.println("sqle: " + sqle.getMessage());
+        	}
         }
         return false; // If no rows returned or an exception occurred, user is not valid
     }
@@ -79,7 +95,8 @@ public class UserJDBCConnector {
             
             // If the query returns any rows, the user is valid
             if (resultSet.next()) {
-                String retrievedUsername = resultSet.getString("username");
+            	//int userID = resultSet.getInt("userID");           
+            	String retrievedUsername = resultSet.getString("username");
                 String retrievedPassword = resultSet.getString("password");
                 String firstName = resultSet.getString("firstName");
                 String lastName = resultSet.getString("lastName");
@@ -87,6 +104,7 @@ public class UserJDBCConnector {
                 
                 // Create a new User object with the retrieved details
                 User curUser = new User(retrievedUsername, retrievedPassword, firstName, lastName, email);
+                System.out.println("in JDBC: " + username + " " + email);
                 return curUser;
             }
             
