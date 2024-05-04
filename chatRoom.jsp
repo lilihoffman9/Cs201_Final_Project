@@ -221,7 +221,7 @@
 	}
 	
 	#sent-messages {
-		margin-top: 20px;
+	    margin-top: 20px;
 	    width: 700px;
 	    height: 500px;
 	    padding: 10px;
@@ -379,10 +379,7 @@
     		</p>
     	</div>
     	
-    	<div id = "sent-messages">
-    		
-    	</div>
-
+    	<div id="sent-messages" class="sent-messages"></div>
 
         <div id="search-area">
             <div id="search-box-container">
