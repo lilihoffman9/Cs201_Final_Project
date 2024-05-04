@@ -1,3 +1,8 @@
+document.addEventListener('DOMContentLoaded', function() {
+    localStorage.clear(); 
+    console.log("Local storage cleared.");
+});
+
 function validatePassword() {
     // Making sure password confirmation is valid
     var password = document.getElementById("password").value;
