@@ -14,8 +14,11 @@
             <ul>
                 <li id="right-items">
                     <ul>
-                        <li><a href="profilePage.html">Welcome</a></li>
-                    </ul>
+						<li><a id="userGreeting" href="profilePage.html">Welcome</a></li>
+						<script>
+						    document.getElementById('userGreeting').textContent = 'Welcome ' + localStorage.getItem('userName');
+						</script>
+					</ul>
                 </li>
             </ul>
         </div> <!-- #nav -->
@@ -30,87 +33,42 @@
 		</div>
 		<div id="events-overview">
 			<p id="reg-events">Registered Events</p>
-			<ul>
-            	<li>
-            		<div class="event-element">
-            			<div class="event-info">
-            				<p class="event-name">
-            					Event 1
-            				</p>
-            				<p class="event-id">
-            					Event1-ID
-            				</p>
-            			</div>
-            			<div class="event-button">
-            				<button class="get-qrcode">
-            					<a href="chatRoom.html">
-            						Get Event <br> QR Code
-            					</a>
-            				</button>
-            			</div>
-            			<div class="event-button">
-            				<button class="get-qrcode">
-            					<a href="chatRoom.html">
-            						Get Event Chat Room
-            					</a>
-            				</button>
-            			</div>
-            		</div>
-            	</li>
-            	<li>
-            		<div class="event-element">
-            			<div class="event-info">
-            				<p class="event-name">
-            					Event 2
-            				</p>
-            				<p class="event-id">
-            					Event2-ID
-            				</p>
-            			</div>
-            			<div class="event-button">
-            				<button class="get-qrcode">
-            					<a href="chatRoom.html">
-            						Get Event <br> QR Code
-            					</a>
-            				</button>
-            			</div>
-            			<div class="event-button">
-            				<button class="get-qrcode">
-            					<a href="chatRoom.html">
-            						Get Event Chat Room
-            					</a>
-            				</button>
-            			</div>
-            		</div>
-            	</li>
-            	<li>
-            		<div class="event-element">
-            			<div class="event-info">
-            				<p class="event-name">
-            					Event 3
-            				</p>
-            				<p class="event-id">
-            					Event3-ID
-            				</p>
-            			</div>
-            			<div class="event-button">
-            				<button class="get-qrcode">
-            					<a href="chatRoom.html">
-            						Get Event <br> QR Code
-            					</a>
-            				</button>
-            			</div>
-            			<div class="event-button">
-            				<button class="get-qrcode">
-            					<a href="chatRoom.html">
-            						Get Event Chat Room
-            					</a>
-            				</button>
-            			</div>
-            		</div>
-            	</li>
-        	</ul>
+			
     	</div>
+    	
+    	<script>
+	        document.addEventListener('DOMContentLoaded', function () {
+	            // Get registered events from local storage
+	            let registeredEvents = JSON.parse(localStorage.getItem("registeredEvents") || "[]");
+
+	            // Reference the container div
+	            let registeredEventsContainer = document.getElementById('reg-events');
+	
+	            // Loop through registered events and append HTML to display them
+	            registeredEvents.forEach((event, index) => {
+	            	console.log(event.event_name);
+	            	console.log(event.registrationTime);
+	                let eventId = index + 1;
+	                let eventHtml = `
+	                	<div class="event-element">
+		                    <div class="event-info">
+		                        <p class="event-id">Event ${eventId}</p>
+		                        <p class="event-name">${event.event_name}</p>
+		                        <p class="event-location">Location: ${event.event_location}</p>
+		                        <p class="event-regTime">Registration Time: ${event.registrationTime}</p>
+		                    </div>
+		                    <div class="event-QRCode">
+		                        <img class="qr-code-img" src="${event.QRCode}" alt="QR Code for Event ${eventId}">
+		                    </div>
+		                    <div class="event-button">
+		                        <button><a href="chatRoom.html">Get Event Chat Room</a></button>
+		                    </div>
+		                </div>
+	                `;
+	                registeredEventsContainer.insertAdjacentHTML('beforeend', eventHtml);
+	            });
+	        });
+	    </script>
 	</div>
 </body>
 </html>
