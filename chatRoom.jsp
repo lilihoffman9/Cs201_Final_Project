@@ -285,7 +285,7 @@
 	} else {
 	    wsUrl = 'wss://';
 	}
-	var ws = new WebSocket(wsUrl + window.location.host + "/ChatServlet");
+	var ws = new WebSocket(wsUrl + window.location.host + "/Final_Project/ChatServlet");
 
 	ws.onmessage = function(event) {
 		var mySpan = document.getElementById("sent-messages");
