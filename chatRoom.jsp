@@ -279,7 +279,7 @@
 	}
 </style>
 <script type = "text/javascript">
-	var ws;
+	/* var ws;
 
 	function connect() {
 		ws = new WebSocket('ws://' + window.location.host + "/Final_Project/chat");
@@ -304,7 +304,35 @@
 		}
 	}
 
-	window.onload = connect;
+	window.onload = connect; */
+	
+	var wordBank = [
+        "Hello, how can I help you today?",
+        "Thank you for your message!",
+        "Can you provide more details?",
+        "That sounds interesting, tell me more.",
+        "I'm here to help, don't hesitate to ask.",
+        "Thank you, have a great day!"
+    ];
+
+    function sendMsg() {
+        var inputBox = document.getElementById("search-box");
+        var messages = document.getElementById("sent-messages");
+        var userMessage = inputBox.value;
+        if (userMessage.trim() !== "") {
+            // Display user message
+            messages.innerHTML += "<div>User: " + userMessage + "</div>";
+
+            // Clear input after sending
+            inputBox.value = "";
+
+            // Simulate receiving a response from the word bank
+            setTimeout(function() {
+                var response = wordBank[Math.floor(Math.random() * wordBank.length)];
+                messages.innerHTML += "<div>Bot: " + response + "</div>";
+            }, 1000);
+        }
+    }
 
 	function login(){
 		console.log("Here");
