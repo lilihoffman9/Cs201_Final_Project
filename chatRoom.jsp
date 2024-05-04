@@ -293,7 +293,7 @@
 	};
 	
 	ws.onerror = function(event) {
-		console.log("Error", error);
+		console.log("Error", event);
 	}
 	
 	function sendMsg() {
