@@ -279,32 +279,32 @@
 	}
 </style>
 <script type = "text/javascript">
-	var wsUrl;
-	if(window.location.protocol == 'http:') {
-	    wsUrl = 'ws://';
-	} else {
-	    wsUrl = 'wss://';
-	}
-	var ws = new WebSocket(wsUrl + window.location.host + "/Final_Project/ChatServlet");
+	var ws;
 
-	ws.onmessage = function(event) {
-		var mySpan = document.getElementById("sent-messages");
-		mySpan.innerHTML+=event.data+"<br/>";
-	};
-	
-	ws.onerror = function(event) {
-		console.log("Error", event);
-	}
-	
-	function sendMsg() {
-		var msg = document.getElementById("search-box").value;
-		if(msg) {
-			ws.send(msg);
+	function connect() {
+		ws = new WebSocket('ws://' + window.location.host + "/Final_Project/chat");
+
+		ws.onmessage = function(event) {
+			var mySpan = document.getElementById("sent-messages");
+			mySpan.innerHTML+=event.data+"<br/>";
+		};
+
+		ws.onclose = function(event) {
+		        console.log('Connection closed by the server.');
+		};
+		
+		ws.onerror = function(event) {
+			console.log("Error", event);
 		}
-		document.getElementById("search-box").value="";
+		
+		function sendMsg() {
+			var msg = document.getElementById("search-box").value;
+			ws.send(msg);
+			msg = "";
+		}
 	}
 
-
+	window.onload = connect;
 
 	function login(){
 		console.log("Here");
@@ -384,7 +384,7 @@
         <div id="search-area">
             <div id="search-box-container">
                 <input type="text" id="search-box" placeholder="Enter a message">
-                <button id="action-button" onclick="return sendMsg();">Send</button>
+                <button id="action-button" onclick="sendMsg()">Send</button>
             </div>
         </div>
 
