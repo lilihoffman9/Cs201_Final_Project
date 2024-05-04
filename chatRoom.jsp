@@ -278,7 +278,6 @@
 	    color:#4D4646;
 	}
 </style>
-</head>
 <script type = "text/javascript">
 	var wsUrl;
 	if(window.location.protocol == 'http:') {
@@ -350,6 +349,7 @@
 		return false;
 	}
 </script>
+</head>
 <body>
 	<div id="navbar">
         <div id="nav">
