@@ -307,13 +307,15 @@
 	window.onload = connect; */
 	
 	var wordBank = [
-        "Hello, how can I help you today?",
-        "Thank you for your message!",
-        "Can you provide more details?",
-        "That sounds interesting, tell me more.",
-        "I'm here to help, don't hesitate to ask.",
-        "Thank you, have a great day!"
+        "Hello",
+        "So excited",
+        "It sounds very interesting",
+        "We should totally meet up at the event",
+        "See you soon",
+        "Bye"
     ];
+
+var currentIndex = 0;
 
     function sendMsg() {
         var inputBox = document.getElementById("search-box");
@@ -321,7 +323,7 @@
         var userMessage = inputBox.value;
         if (userMessage.trim() !== "") {
             // Display user message
-            messages.innerHTML += "<div>User: " + userMessage + "</div>";
+            messages.innerHTML += "<div>User 1: " + userMessage + "</div>";
 
             // Clear input after sending
             inputBox.value = "";
@@ -330,8 +332,15 @@
 
             // Simulate receiving a response from the word bank
             setTimeout(function() {
-                var response = wordBank[Math.floor(Math.random() * wordBank.length)];
-                messages.innerHTML += "<div>Bot: " + response + "</div>";
+                var response = wordBank[currentIndex];
+                messages.innerHTML += "<div>User 2: " + response + "</div>";
+                
+                // Increment the index to the next message
+                currentIndex++;
+                // If we've reached the end of the word bank, loop back to the beginning
+                if (currentIndex >= wordBank.length) {
+                    currentIndex = 0;
+                }
             }, randomDelay);
         }
     }
