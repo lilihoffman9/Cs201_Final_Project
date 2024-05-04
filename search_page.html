@@ -2,158 +2,172 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="shared.css">
-    <title>Search For An Event</title>
+_
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="shared.css">
+<title>Search For An Event</title>
 </head>
 <style>
-    #inner-box {
-        width: calc(100% - 100px);
-        height: calc(100% - 135px);
-        background-color: #D9D9D9;
-        border-radius: 5px;
-        z-index: 0;
-        margin-top: 30px;
-        margin-left: 250px;
-        margin-right: 50px;
-        bottom: 30px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 500px;
-        overflow: auto;
-    }
+#inner-box {
+	width: calc(100% - 100px);
+	height: calc(100% - 135px);
+	background-color: #D9D9D9;
+	border-radius: 5px;
+	z-index: 0;
+	margin-top: 30px;
+	margin-left: 250px;
+	margin-right: 50px;
+	bottom: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 500px;
+	overflow: auto;
+}
 
-    #search-area {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+#search-area {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 
-    #search-box-container {
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-    }
+#search-box-container {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+}
 
-    #search-box {
-        margin-top: 20px;
-        width: 500px;
-        padding: 10px;
-        border-radius: 5px;
-        background-color: #C8C7C7;
-        border: none;
-        margin-right: 10px;
-        font-size: large;
+#search-box {
+	margin-top: 20px;
+	width: 500px;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: #C8C7C7;
+	border: none;
+	margin-right: 10px;
+	font-size: large;
+}
 
-    }
+.search-button, #register-button, #action-button {
+	padding: 10px 20px;
+	margin: 0 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 150px;
+	font-size: large;
+}
 
-    .search-button,
-    #action-button {
-        padding: 10px 20px;
-        margin: 0 10px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 150px;
-        font-size: large;
-    }
+#action-button {
+	width: 50px;
+	margin-top: 20px;
+	font-size: 20px;
+}
 
-    #action-button {
-        width: 50px;
-        margin-top: 20px;
-        font-size: 20px;
-    }
+.register-button {
+	margin-bottom: 10px;
+	margin-left: 12px;
+}
 
-    #search-by {
-        display: flex;
-        align-items: center;
-        font-family: Arial;
-        font-size: large;
-        margin-bottom: 10px;
-    }
+#search-by {
+	display: flex;
+	align-items: center;
+	font-family: Arial;
+	font-size: large;
+	margin-bottom: 10px;
+}
 
-    #search-by-text {
-        color: #4D4646;
-    }
+#search-by-text {
+	color: #4D4646;
+}
 
-    .event {
-        background-color: #f0f0f0;
-        padding: 10px;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        margin-top: 10ox;
-    }
+.event {
+	background-color: #f0f0f0;
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	margin-top: 10ox;
+}
 
-    .event h3 {
-        font-size: 18px;
-        color: #333;
-        text-align: left;
-        margin: 10px;
-    }
+.event h3 {
+	font-size: 18px;
+	color: #333;
+	text-align: left;
+	margin: 10px;
+}
 
-    .event p {
-        font-size: 14px;
-        color: #666;
-        text-align: left;
-        margin: 10px;
-    }
+.event p {
+	font-size: 14px;
+	color: #666;
+	text-align: left;
+	margin: 10px;
+}
 
-    .event img {
-        width: 100px;
-        height: 100px;
-        margin: 10px;
-    }
+.event img {
+	width: 100px;
+	height: 100px;
+	margin: 10px;
+}
 </style>
 
 <body>
-    <div id="navbar">
-        <div id="nav">
-            <ul>
-                <li id="right-items">
-                    <ul>
-                        <li><a href="profilePage.html">Welcome [Username]</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div> <!-- #nav -->
-    </div> <!-- #navbar -->
+	<div id="navbar">
+		<div id="nav">
+			<ul>
+				<li id="right-items">
+					<ul>
+						<li><a id="userGreeting" href="profilePage.html">Welcome</a></li>
+						<script>
+						    document.getElementById('userGreeting').textContent = 'Welcome ' + localStorage.getItem('userName');
+						</script>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<!-- #nav -->
+	</div>
+	<!-- #navbar -->
 
-    <div id="vertical-navbar">
-        <ul>
-            <li><a href="profilePage.html">Home</a></li>
-            <li><a href="search_page.html">Search</a></li>
-            <li><a href="profilePage_events.html">My Events</a></li>
-            <li><a href="chatRoom.html">Messages</a></li>
-        </ul>
-    </div> <!-- #vertical-navbar -->
+	<div id="vertical-navbar">
+		<ul>
+			<li><a href="profilePage.html">Home</a></li>
+			<li><a href="search_page.html">Search</a></li>
+			<li><a href="profilePage_events.html">My Events</a></li>
+		</ul>
+	</div>
+	<!-- #vertical-navbar -->
 
-    <div id="inner-box">
-        <div id="search-area">
-            <div id="search-box-container">
-                <input type="text" id="search-box" placeholder="Search Our Events">
-                <button id="action-button"><i class="fas fa-search"></i></button>
-            </div>
-            <div id="search-by">
-                <span id="search-by-text">Search by: </span>
-                <button id="search-by-eventname" class="search-button">Event Name</button>
-                <button id="search-by-date" class="search-button">Date</button>
-                <button id="search-by-location" class="search-button">Location</button>
-            </div>
-        </div>
-    </div>
+	<div id="inner-box">
+		<div id="search-area">
+			<div id="search-box-container">
+				<input type="text" id="search-box" placeholder="Search Our Events">
+				<button id="action-button">
+					<i class="fas fa-search"></i>
+				</button>
+			</div>
+			<div id="search-by">
+				<span id="search-by-text">Search by: </span>
+				<button id="search-by-eventname" class="search-button">Event
+					Name</button>
+				<button id="search-by-date" class="search-button">Date</button>
+				<button id="search-by-location" class="search-button">Location</button>
+			</div>
+		</div>
+	</div>
 
-    <script>
+	<script>
+    document.addEventListener('DOMContentLoaded', function() {
         let selectedSearchOption = null; 
-    
+
         function resetButtons() {
             document.querySelectorAll('.search-button').forEach(button => {
                 button.style.backgroundColor = ''; 
             });
         }
-    
+
         function detectButtons(event) {
             const selectedButton = event.target.id;
             if (selectedSearchOption === selectedButton) {
@@ -165,31 +179,32 @@
                 event.target.style.backgroundColor = 'red'; 
             }
         }
-    
+
         document.querySelectorAll('.search-button').forEach(button => {
             button.addEventListener('click', detectButtons);
         });
-    
+
         document.getElementById('action-button').addEventListener('click', function () {
             if (!selectedSearchOption) {
                 alert('Please select a search option.'); // Error message if no option is selected
                 return;
             }
-    
+
             const old = document.getElementById('search-results');
             if (old) {
                 old.remove(); 
             }
-    
+
             const searchText = document.getElementById('search-box').value.toLowerCase();
             const events = [
                 { eventName: 'Summer Music Festival', location: 'New York City, NY', date: '2024-06-21 14:00:00', description: 'Join us for a day filled with music from top artists and local bands.', QRCodePath: 'https://qrcg-free-editor.qr-code-generator.com/main/assets/images/websiteQRCode_noFrame.png' },
                 { eventName: 'Tech Conference 2024', location: 'San Francisco, CA', date: '2024-09-15 09:00:00', description: 'A comprehensive conference featuring industry leaders in technology and innovation.', QRCodePath: 'https://qrcg-free-editor.qr-code-generator.com/main/assets/images/websiteQRCode_noFrame.png' },
                 { eventName: 'Marathon 2024', location: 'Boston, MA', date: '2024-04-19 06:00:00', description: 'Annual marathon with participants from all over the world.', QRCodePath: 'https://qrcg-free-editor.qr-code-generator.com/main/assets/images/websiteQRCode_noFrame.png' },
                 { eventName: 'Food Expo 2024', location: 'Chicago, IL', date: '2024-08-12 10:00:00', description: 'Explore culinary delights from famous chefs and local favorites.', QRCodePath: 'https://qrcg-free-editor.qr-code-generator.com/main/assets/images/websiteQRCode_noFrame.png' },
-                { eventName: 'Art & Sculpture Exhibition', location: 'Los Angeles, CA', date: '2024-11-05 11:00:00', description: 'Experience breathtaking contemporary art and sculptures by renowned artists.', QRCodePath: 'https://qrcg-free-editor.qr-code-generator.com/main/assets/images/websiteQRCode_noFrame.png' }
+                { eventName: 'Art & Sculpture Exhibition', location: 'Los Angeles, CA', date: '2024-11-05 11:00:00', description: 'Experience breathtaking contemporary art and sculptures by renowned artists.', QRCodePath: 'https://qrcg-free-editor.qr-code-generator.com/main/assets/images/websiteQRCode_noFrame.png' },
+                { eventName: 'Taylor Swift Concert', location: 'Los Angeles, CA', date: '2024-07-01 17:00:00', description: 'Taylor Swift will be performing at the KIA Stadium on April 25th, 2024 at 4pm.', QRCodePath: 'img/taylor_swift.png'}
             ];
-    
+
             let filteredEvents = [];
             if (selectedSearchOption === 'search-by-date') {
                 filteredEvents = events.filter(event => event.date.includes(searchText));
@@ -198,7 +213,7 @@
             } else if (selectedSearchOption === 'search-by-eventname') {
                 filteredEvents = events.filter(event => event.eventName.toLowerCase().includes(searchText));
             }
-    
+
             const resultsDiv = document.createElement('div');
             resultsDiv.id = 'search-results';
             document.getElementById('inner-box').appendChild(resultsDiv);
@@ -206,16 +221,51 @@
             if (filteredEvents.length === 0) {
                 resultsDiv.innerHTML = `<p>No events found matching your search.</p>`;
             }
-    
+
             filteredEvents.forEach(event => {
+                let eventUrl = '';
+                if (event.eventName === 'Taylor Swift Concert') {
+                    eventUrl = 'taylor_swift.html';
+                } else if (event.eventName === 'Summer Music Festival') {
+                    eventUrl = 'summer_festival.html';
+                } else if (event.eventName === 'Tech Conference 2024') {
+                    eventUrl = 'tech_conference.html';
+                } else if (event.eventName === 'Marathon 2024') {
+                    eventUrl = 'marathon.html';
+                } else if (event.eventName === 'Food Expo 2024') {
+                    eventUrl = 'food_expo.html';
+                } else if (event.eventName === 'Art & Sculpture Exhibition') {
+                    eventUrl = 'art_exhibition.html';
+                } 
+
                 const eventDiv = document.createElement('div');
                 eventDiv.classList.add('event');
-                eventDiv.innerHTML = `<h3>${event.eventName}</h3><p>${event.location} | ${event.date}</p><p>${event.description}</p><img src="${event.QRCodePath}" alt="QR Code">`;
+                eventDiv.innerHTML = `<h3><a href="${eventUrl}">${event.eventName}</a></h3><p>${event.location} | ${event.date}</p><p>${event.description}</p><button class="register-button">Register</button>`;
+                
+                // Add event listener for register button click
+                eventDiv.querySelector('.register-button').addEventListener('click', function () {
+                	let regEvents = JSON.parse(window.localStorage.getItem("registeredEvents") || "[]");
+
+                	let registerAdd = {
+                    	event_name: event.eventName,
+                    	event_location: event.location,
+                    	registrationTime: new Date().toLocaleString(),
+                    	QRCode: event.QRCodePath
+                	};
+                	
+                	regEvents.push(registerAdd);
+                	
+                	window.localStorage.setItem("registeredEvents", JSON.stringify(regEvents));
+                	
+                    alert(`You have successfully registered for ${event.eventName}. Go to My Events to see your list of events.`);
+                });
+
                 resultsDiv.appendChild(eventDiv);
             });
-            
         });
-    </script>
+    });
+</script>
+
 
 </body>
 
