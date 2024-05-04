@@ -1,3 +1,8 @@
+document.addEventListener('DOMContentLoaded', function() {
+    localStorage.clear(); 
+    console.log("Local storage cleared.");
+});
+
 function login(){
 	var _username = document.getElementById("username").value;
 	var _password = document.getElementById("password").value;
