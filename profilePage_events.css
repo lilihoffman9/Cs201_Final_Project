@@ -212,3 +212,15 @@ p#reg-events {
     width: 120px;
     padding: 10px;
 }
+
+.get-qrcode {
+	width: 180px;
+	padding: 10px;
+    font-size:large;
+    background-color: #F88A3E;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-right: 10px;
+    border-radius: 4px;
+}
