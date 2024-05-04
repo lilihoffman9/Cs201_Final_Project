@@ -325,12 +325,14 @@
 
             // Clear input after sending
             inputBox.value = "";
+            
+            var randomDelay = Math.floor(Math.random() * (5000 - 1000 + 1) + 1000);
 
             // Simulate receiving a response from the word bank
             setTimeout(function() {
                 var response = wordBank[Math.floor(Math.random() * wordBank.length)];
                 messages.innerHTML += "<div>Bot: " + response + "</div>";
-            }, 1000);
+            }, randomDelay);
         }
     }
 
