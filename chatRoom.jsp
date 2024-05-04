@@ -222,8 +222,8 @@
 	
 	#sent-messages {
 	    margin-top: 20px;
-	    width: 700px;
-	    height: 500px;
+	    width: 1100px;
+	    height: 350px;
 	    padding: 10px;
 	    border-radius: 5px;
 	    background-color: whitesmoke;
