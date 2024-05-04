@@ -281,12 +281,12 @@
 <script type = "text/javascript">
 	var wsUrl;
 	if(window.location.protocol == 'http:') {
-		wsUrl = 'ws://';
+	    wsUrl = 'ws://';
 	} else {
-		wsUrl = 'wss://';
+	    wsUrl = 'wss://';
 	}
-	var ws = new WebSocket(wsUrl + window.location.host + "/Final_Project/chatRoom.jsp");
-	
+	var ws = new WebSocket(wsUrl + window.location.host + "/ChatServlet");
+
 	ws.onmessage = function(event) {
 		var mySpan = document.getElementById("sent-messages");
 		mySpan.innerHTML+=event.data+"<br/>";
