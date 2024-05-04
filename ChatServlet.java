@@ -37,7 +37,7 @@ public class ChatServlet extends HttpServlet {
 	
 	@OnMessage
 	public void onMessage(String message, Session userSession) {
-		for(Session ses: userSession) {
+		for(Session ses: userSessions) {
 			ses.getAsyncRemote().sendText(message);
 		}
 	}
